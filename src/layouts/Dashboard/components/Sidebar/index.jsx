@@ -42,6 +42,8 @@ class Sidebar extends Component {
 
     const rootClassName = classNames(classes.root, className);
 
+    const email = localStorage.getItem('email');
+
     return (
       <nav className={rootClassName}>
         <div className={classes.logoWrapper}>
@@ -69,7 +71,7 @@ class Sidebar extends Component {
             className={classes.nameText}
             variant="h6"
           >
-            Roman Kutepov
+            {email ? email : 'Roman Kutepov'}
           </Typography>
           <Typography
             className={classes.bioText}

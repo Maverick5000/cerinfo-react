@@ -98,6 +98,7 @@ class SignIn extends Component {
       await signIn(values.email, values.password);
 
       localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('email', values.email);
 
       history.push('/dashboard');
     } catch (error) {
