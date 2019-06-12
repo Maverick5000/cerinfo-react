@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/cerinfo-react/static/css/main.2cce8147.chunk.css",
-    "main.js": "/cerinfo-react/static/js/main.4d6f7ddb.chunk.js",
-    "main.js.map": "/cerinfo-react/static/js/main.4d6f7ddb.chunk.js.map",
+    "main.css": "/cerinfo-react/static/css/main.0542c2e1.chunk.css",
+    "main.js": "/cerinfo-react/static/js/main.94437a39.chunk.js",
+    "main.js.map": "/cerinfo-react/static/js/main.94437a39.chunk.js.map",
     "runtime~main.js": "/cerinfo-react/static/js/runtime~main.152ba821.js",
     "runtime~main.js.map": "/cerinfo-react/static/js/runtime~main.152ba821.js.map",
-    "static/js/2.b41502e9.chunk.js": "/cerinfo-react/static/js/2.b41502e9.chunk.js",
-    "static/js/2.b41502e9.chunk.js.map": "/cerinfo-react/static/js/2.b41502e9.chunk.js.map",
+    "static/css/2.fa4a79a6.chunk.css": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css",
+    "static/js/2.364139e2.chunk.js": "/cerinfo-react/static/js/2.364139e2.chunk.js",
+    "static/js/2.364139e2.chunk.js.map": "/cerinfo-react/static/js/2.364139e2.chunk.js.map",
     "index.html": "/cerinfo-react/index.html",
-    "precache-manifest.07b303b61008869e772f034f5ebb932a.js": "/cerinfo-react/precache-manifest.07b303b61008869e772f034f5ebb932a.js",
+    "precache-manifest.882ed74231cefe2f3ca8a05ebd468eea.js": "/cerinfo-react/precache-manifest.882ed74231cefe2f3ca8a05ebd468eea.js",
     "service-worker.js": "/cerinfo-react/service-worker.js",
-    "static/css/main.2cce8147.chunk.css.map": "/cerinfo-react/static/css/main.2cce8147.chunk.css.map",
-    "static/media/logo.svg": "/cerinfo-react/static/media/logo.5d5d9eef.svg"
+    "static/css/2.fa4a79a6.chunk.css.map": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css.map",
+    "static/css/main.0542c2e1.chunk.css.map": "/cerinfo-react/static/css/main.0542c2e1.chunk.css.map"
   }
 }
