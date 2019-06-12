@@ -28,10 +28,13 @@ import { Dashboard as DashboardLayout } from 'layouts';
 import { getProducts } from 'services/product';
 
 // Custom components
-import { ProductsToolbar, ProductCard } from './components';
+import { ProductsToolbar, ProductCard, ProductCardLibro } from './components';
 
 // Component styles
 import styles from './styles';
+
+// Axios
+import axios from 'axios';
 
 class ProductList extends Component {
   signal = true;
@@ -68,12 +71,21 @@ class ProductList extends Component {
     }
   }
 
+  async getLibros() {
+    await axios.get(`https://cerinfo-api.herokuapp.com/libros`)
+      .then(res => {
+        const libros = res.data;
+        this.setState({ libros });
+      })
+  }
+
   componentWillMount() {
     this.signal = true;
 
     const { limit } = this.state;
 
     this.getProducts(limit);
+    this.getLibros();
   }
 
   componentWillUnmount() {
@@ -82,7 +94,7 @@ class ProductList extends Component {
 
   renderProducts() {
     const { classes } = this.props;
-    const { isLoading, products } = this.state;
+    const { isLoading, products, libros } = this.state;
 
     if (isLoading) {
       return (
@@ -92,7 +104,7 @@ class ProductList extends Component {
       );
     }
 
-    if (products.length === 0) {
+    if (libros.length === 0) {
       return (
         <Typography variant="h6">There are no products available</Typography>
       );
@@ -103,16 +115,16 @@ class ProductList extends Component {
         container
         spacing={3}
       >
-        {products.map(product => (
+        {libros.map(libro => (
           <Grid
             item
-            key={product.id}
+            key={libro.id}
             lg={4}
             md={6}
             xs={12}
           >
             <Link to="#">
-              <ProductCard product={product} />
+              <ProductCardLibro libro={libro} />
             </Link>
           </Grid>
         ))}
@@ -127,7 +139,7 @@ class ProductList extends Component {
       <DashboardLayout title="Products">
         <div className={classes.root}>
           <ProductsToolbar />
-          <div className={classes.content}>{this.renderProducts()}</div>
+          <div className={classes.content}>{this.state.libros ? this.renderProducts() : null}</div>
           <div className={classes.pagination}>
             <Typography variant="caption">1-6 of 20</Typography>
             <IconButton>

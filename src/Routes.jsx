@@ -78,7 +78,7 @@ export default class Routes extends Component {
           exact
           path="/not-found"
         />
-        <Redirect to="/not-found" />
+        <Redirect to="/dashboard" />
       </Switch>
     );
   }
