@@ -36,7 +36,7 @@ export default class Routes extends Component {
         <Route
           component={ProductList}
           exact
-          path="/products"
+          path="/libros"
         />
         <Route
           component={Typography}
@@ -78,7 +78,7 @@ export default class Routes extends Component {
           exact
           path="/not-found"
         />
-        <Redirect to="/dashboard" />
+        <Redirect to="/not-found" />
       </Switch>
     );
   }

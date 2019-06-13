@@ -32,7 +32,7 @@ class ProductCardLibro extends Component {
       <Paper className={rootClassName}>
         <div className={classes.imageWrapper}>
           <img
-            alt="Product"
+            alt="Libro"
             className={classes.image}
             src='https://odcspress.org/wp-content/uploads/2017/01/Stack-Books-Copy.jpg'
           />

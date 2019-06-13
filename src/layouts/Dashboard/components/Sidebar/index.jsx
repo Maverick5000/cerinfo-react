@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 // Material helpers
 import { withStyles } from '@material-ui/core';
 
+import Gravatar from 'react-gravatar'
+
 // Material components
 import {
   Avatar,
@@ -52,19 +54,22 @@ class Sidebar extends Component {
             to="/"
           >
             <img
-              alt="Brainalytica logo"
+              alt="CERINFO logo"
               className={classes.logoImage}
-              src="/images/logos/brainalytica_logo.svg"
+              src="https://i.ibb.co/s1g2nNn/cerinfo-logo.png"
+              style={{height: '15vh', width: '10vw', padding: '5em'}}
             />
           </Link>
         </div>
+        <br/>
         <Divider className={classes.logoDivider} />
         <div className={classes.profile}>
           <Link to="/account">
-            <Avatar
-              alt="Roman Kutepov"
+            <Gravatar
+              email={email ? email : 'test@gmail.com'}
+              default= 'identicon'
               className={classes.avatar}
-              src="/images/avatars/avatar_1.png"
+              size={150}
             />
           </Link>
           <Typography
@@ -99,7 +104,7 @@ class Sidebar extends Component {
               primary="Dashboard"
             />
           </ListItem>
-          <ListItem
+          {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -112,19 +117,19 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Users"
             />
-          </ListItem>
+          </ListItem> */}
           <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
-            to="/products"
+            to="/libros"
           >
             <ListItemIcon className={classes.listItemIcon}>
               <ShoppingBasketIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
-              primary="Products"
+              primary="Libros"
             />
           </ListItem>
           <ListItem

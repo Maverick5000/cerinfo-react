@@ -82,9 +82,9 @@ class ProductList extends Component {
   componentWillMount() {
     this.signal = true;
 
-    const { limit } = this.state;
+    //const { limit } = this.state;
 
-    this.getProducts(limit);
+    //this.getProducts(limit);
     this.getLibros();
   }
 
@@ -136,7 +136,7 @@ class ProductList extends Component {
     const { classes } = this.props;
 
     return (
-      <DashboardLayout title="Products">
+      <DashboardLayout title="Libros">
         <div className={classes.root}>
           <ProductsToolbar />
           <div className={classes.content}>{this.state.libros ? this.renderProducts() : null}</div>
