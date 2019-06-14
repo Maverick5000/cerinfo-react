@@ -22,7 +22,22 @@ import { Paper } from 'components';
 // Component styles
 import styles from './styles';
 
+// Axios
+import axios from 'axios';
+
 class Budget extends Component {
+
+  state = {
+    nMultas: 0
+  }
+
+  componentDidMount() {
+    axios.get(`https://cerinfo-api.herokuapp.com/multas`)
+      .then(res => {
+        this.setState({ nMultas: res.data.length });
+      })
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
 
@@ -39,20 +54,20 @@ class Budget extends Component {
               className={classes.title}
               variant="body2"
             >
-              BUDGET
+              MULTAS
             </Typography>
             <Typography
               className={classes.value}
               variant="h3"
             >
-              $24,000
+              {this.state.nMultas ? this.state.nMultas : 0}
             </Typography>
           </div>
           <div className={classes.iconWrapper}>
             <MoneyIcon className={classes.icon} />
           </div>
         </div>
-        <div className={classes.footer}>
+        {/* <div className={classes.footer}>
           <Typography
             className={classes.difference}
             variant="body2"
@@ -66,7 +81,7 @@ class Budget extends Component {
           >
             Since last month
           </Typography>
-        </div>
+        </div> */}
       </Paper>
     );
   }

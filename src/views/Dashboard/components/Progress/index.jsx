@@ -19,7 +19,27 @@ import { Paper } from 'components';
 // Component styles
 import styles from './styles';
 
+// Axios
+import axios from 'axios';
+
 class Progress extends Component {
+
+  state = {
+    nMonto: 0
+  }
+
+  async componentDidMount() {
+    let total = 0
+    await axios.get(`https://cerinfo-api.herokuapp.com/multas`)
+      .then(res => {
+        let array = res.data
+        array.forEach(element => {
+          total = total + element.monto_multa
+        });
+      })
+    this.setState({ nMonto: parseFloat(total).toFixed(2) });
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
 
@@ -36,25 +56,25 @@ class Progress extends Component {
               className={classes.title}
               variant="body2"
             >
-              PROGRESS
+              TOTAL DEUDA
             </Typography>
             <Typography
               className={classes.value}
               variant="h3"
             >
-              75.5%
+              {this.state.nMonto ? this.state.nMonto : 0}Bs
             </Typography>
           </div>
           <div className={classes.iconWrapper}>
             <InsertChartIcon className={classes.icon} />
           </div>
         </div>
-        <div className={classes.footer}>
+        {/* <div className={classes.footer}>
           <LinearProgress
             value={75.5}
             variant="determinate"
           />
-        </div>
+        </div> */}
       </Paper>
     );
   }

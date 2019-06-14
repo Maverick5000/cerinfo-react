@@ -72,7 +72,7 @@ class Dashboard extends Component {
             >
               <Progress className={classes.item} />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               lg={3}
               sm={6}
@@ -80,8 +80,8 @@ class Dashboard extends Component {
               xs={12}
             >
               <Profit className={classes.item} />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               lg={8}
               md={12}
@@ -89,8 +89,8 @@ class Dashboard extends Component {
               xs={12}
             >
               <SalesChart className={classes.item} />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               lg={4}
               md={6}
@@ -98,7 +98,7 @@ class Dashboard extends Component {
               xs={12}
             >
               <DevicesChart className={classes.item} />
-            </Grid>
+            </Grid> */}
             <Grid
               item
               lg={4}

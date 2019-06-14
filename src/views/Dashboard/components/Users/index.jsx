@@ -22,7 +22,22 @@ import { Paper } from 'components';
 // Component styles
 import styles from './styles';
 
+// Axios
+import axios from 'axios';
+
 class Users extends Component {
+
+  state = {
+    nPrestamos: 0
+  }
+
+  componentDidMount() {
+    axios.get(`https://cerinfo-api.herokuapp.com/prestamos`)
+      .then(res => {
+        this.setState({ nPrestamos: res.data.length });
+      })
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
 
@@ -39,20 +54,20 @@ class Users extends Component {
               className={classes.title}
               variant="body2"
             >
-              TOTAL USERS
+              PRESTAMOS
             </Typography>
             <Typography
               className={classes.value}
               variant="h3"
             >
-              1600
+              {this.state.nPrestamos ? this.state.nPrestamos : 0}
             </Typography>
           </div>
           <div className={classes.iconWrapper}>
             <PeopleIcon className={classes.icon} />
           </div>
         </div>
-        <div className={classes.footer}>
+        {/* <div className={classes.footer}>
           <Typography
             className={classes.difference}
             variant="body2"
@@ -66,7 +81,7 @@ class Users extends Component {
           >
             Since last month
           </Typography>
-        </div>
+        </div> */}
       </Paper>
     );
   }
