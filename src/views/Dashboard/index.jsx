@@ -12,6 +12,8 @@ import { Grid } from '@material-ui/core';
 // Shared layouts
 import { Dashboard as DashboardLayout } from 'layouts';
 
+import Paper from '@material-ui/core/Paper';
+
 // Custom components
 import {
   Budget,
@@ -117,6 +119,20 @@ class Dashboard extends Component {
             >
               <OrdersTable className={classes.item} />
             </Grid> */}
+            <Grid
+              item
+              lg={8}
+              md={12}
+              xl={9}
+              xs={12}
+            >
+              <div style={{display: 'inline-block', position: 'relative'}}>
+                <div> 
+                <h1 className='MuiTypography-root MuiTypography-h3 Users-value-284' style={{top: '40%', left: '35%', position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: "1em", borderRadius: '5px'}}>BIENVENIDO A CERINFO</h1>
+                </div>
+                <img style={{width: '70vw', height: '50vh'}} src="https://www.texasmonthly.com/wp-content/uploads/2018/01/whatley-2-2000x0-c-default.jpg"/>
+              </div>
+            </Grid>
           </Grid>
         </div>
       </DashboardLayout>
