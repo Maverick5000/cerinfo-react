@@ -62,7 +62,7 @@ class SignIn extends Component {
 
   handleBack = () => {
     const { history } = this.props;
-
+    localStorage.setItem('isAuthenticated', false);
     history.goBack();
   };
 

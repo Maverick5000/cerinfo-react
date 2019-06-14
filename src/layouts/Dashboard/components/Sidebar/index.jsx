@@ -58,7 +58,7 @@ class Sidebar extends Component {
               alt="CERINFO logo"
               className={classes.logoImage}
               src="https://i.ibb.co/s1g2nNn/cerinfo-logo.png"
-              style={{height: '15vh', width: '10vw', padding: '5em'}}
+              style={{height: '12vh', width: '8vw', padding: '5em'}}
             />
           </Link>
         </div>

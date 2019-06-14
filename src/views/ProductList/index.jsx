@@ -139,7 +139,7 @@ class ProductList extends Component {
       <DashboardLayout title="Libros">
         <div className={classes.root}>
           <ProductsToolbar />
-          <div className={classes.content}>{this.state.libros ? this.renderProducts() : null}</div>
+          <div className={classes.content}>{this.state.libros ? this.renderProducts() :<div className={classes.progressWrapper}> <CircularProgress /> </div>}</div>
           <div className={classes.pagination}>
             <Typography variant="caption">1-6 of 20</Typography>
             <IconButton>

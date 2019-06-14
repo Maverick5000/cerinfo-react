@@ -23,7 +23,8 @@ import {
   Menu as MenuIcon,
   Close as CloseIcon,
   NotificationsOutlined as NotificationsIcon,
-  Input as InputIcon
+  Input as InputIcon,
+  OpenInBrowser as OpenIcon
 } from '@material-ui/icons';
 
 // Shared services
@@ -42,7 +43,8 @@ class Topbar extends Component {
     notifications: [],
     notificationsLimit: 4,
     notificationsCount: 0,
-    notificationsEl: null
+    notificationsEl: null,
+    creds: localStorage.getItem('isAuthenticated')
   };
 
   async getNotifications() {
@@ -77,6 +79,8 @@ class Topbar extends Component {
     const { history } = this.props;
 
     localStorage.setItem('isAuthenticated', false);
+    localStorage.setItem('email', '');
+    this.setState({creds: false});
     history.push('/sign-in');
   };
 
@@ -104,6 +108,9 @@ class Topbar extends Component {
 
     const rootClassName = classNames(classes.root, className);
     const showNotifications = Boolean(notificationsEl);
+    let cred = localStorage.getItem('isAuthenticated')
+    console.log(cred)
+    console.log(this.state.creds)
 
     return (
       <Fragment>
@@ -136,9 +143,8 @@ class Topbar extends Component {
             </IconButton>
             <IconButton
               className={classes.signOutButton}
-              onClick={this.handleSignOut}
-            >
-              <InputIcon />
+              onClick={this.handleSignOut}>
+            {this.state.creds == 'false' ? <OpenIcon />  : <InputIcon />}
             </IconButton>
           </Toolbar>
         </div>
