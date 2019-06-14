@@ -60,7 +60,7 @@ class Progress extends Component {
             </Typography>
             <Typography
               className={classes.value}
-              variant="h3"
+              variant="h4"
             >
               {this.state.nMonto ? this.state.nMonto : 0}Bs
             </Typography>

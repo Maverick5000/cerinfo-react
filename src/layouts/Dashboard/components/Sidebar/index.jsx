@@ -77,13 +77,13 @@ class Sidebar extends Component {
             className={classes.nameText}
             variant="h6"
           >
-            {email ? email : 'Roman Kutepov'}
+            {email ? email : 'Cerinfo-Nur'}
           </Typography>
           <Typography
             className={classes.bioText}
             variant="caption"
           >
-            Brain Director
+            Estudiante
           </Typography>
         </div>
         <Divider className={classes.profileDivider} />
@@ -147,7 +147,7 @@ class Sidebar extends Component {
               primary="Authentication"
             />
           </ListItem>
-          <ListItem
+          {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -160,8 +160,8 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Typography"
             />
-          </ListItem>
-          <ListItem
+          </ListItem> */}
+          {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -174,7 +174,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Icons and Images"
             />
-          </ListItem>
+          </ListItem> */}
           <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
@@ -186,10 +186,10 @@ class Sidebar extends Component {
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
-              primary="Account"
+              primary="Mi Cuenta"
             />
           </ListItem>
-          <ListItem
+          {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -202,7 +202,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Settings"
             />
-          </ListItem>
+          </ListItem> */}
         </List>
         <Divider className={classes.listDivider} />
         <List
@@ -210,7 +210,7 @@ class Sidebar extends Component {
           disablePadding
           subheader={
             <ListSubheader className={classes.listSubheader}>
-              Support
+              Contacto
             </ListSubheader>
           }
         >
@@ -225,7 +225,7 @@ class Sidebar extends Component {
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
-              primary="Customer support"
+              primary="Servicio al Cliente"
             />
           </ListItem>
         </List>

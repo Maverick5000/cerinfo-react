@@ -99,7 +99,7 @@ class Dashboard extends Component {
             >
               <DevicesChart className={classes.item} />
             </Grid> */}
-            <Grid
+            {/* <Grid
               item
               lg={4}
               md={6}
@@ -107,8 +107,8 @@ class Dashboard extends Component {
               xs={12}
             >
               <ProductList className={classes.item} />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               lg={8}
               md={12}
@@ -116,7 +116,7 @@ class Dashboard extends Component {
               xs={12}
             >
               <OrdersTable className={classes.item} />
-            </Grid>
+            </Grid> */}
           </Grid>
         </div>
       </DashboardLayout>
