@@ -32,7 +32,9 @@ class Users extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://cerinfo-api.herokuapp.com/prestamos`)
+    // const id = localStorage.getItem('id');
+    const id = '1'
+    axios.get(`https://cerinfo-api.herokuapp.com/user/prestamos`, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nPrestamos: res.data.length });
       })

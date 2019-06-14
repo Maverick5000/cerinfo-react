@@ -32,7 +32,10 @@ class Budget extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://cerinfo-api.herokuapp.com/multas`)
+    // const id = localStorage.getItem('id');
+    const id = '1'
+
+    axios.get(`https://cerinfo-api.herokuapp.com/user/multas`, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nMultas: res.data.length });
       })
