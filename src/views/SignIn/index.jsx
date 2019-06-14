@@ -32,6 +32,9 @@ import styles from './styles';
 // Form validation schema
 import schema from './schema';
 
+// Axios
+import axios from 'axios';
+
 // Service methods
 const signIn = () => {
   return new Promise(resolve => {
@@ -95,10 +98,17 @@ class SignIn extends Component {
 
       this.setState({ isLoading: true });
 
-      await signIn(values.email, values.password);
+      //await signIn(values.email, values.password);
 
-      localStorage.setItem('isAuthenticated', true);
-      localStorage.setItem('email', values.email);
+      await axios.get(`https://cerinfo-api.herokuapp.com/login`, { params: { email: values.email, password: values.password } })
+        .then(res => {
+          localStorage.setItem('email', res.data[0].email);
+          localStorage.setItem('tipo_usuario', res.data[0].tipo_usuario);
+          localStorage.setItem('nombre_usuario', res.data[0].nombre_usuario);
+          localStorage.setItem('paterno_usuario', res.data[0].paterno_usuario);
+          localStorage.setItem('materno_usuario', res.data[0].materno_usuario);
+          localStorage.setItem('isAuthenticated', true);
+        })
 
       history.push('/dashboard');
     } catch (error) {
@@ -265,17 +275,17 @@ class SignIn extends Component {
                   {isLoading ? (
                     <CircularProgress className={classes.progress} />
                   ) : (
-                    <Button
-                      className={classes.signInButton}
-                      color="primary"
-                      disabled={!isValid}
-                      onClick={this.handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      Sign in now
+                      <Button
+                        className={classes.signInButton}
+                        color="primary"
+                        disabled={!isValid}
+                        onClick={this.handleSignIn}
+                        size="large"
+                        variant="contained"
+                      >
+                        Sign in now
                     </Button>
-                  )}
+                    )}
                   <Typography
                     className={classes.signUp}
                     variant="body1"

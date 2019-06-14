@@ -109,8 +109,6 @@ class Topbar extends Component {
     const rootClassName = classNames(classes.root, className);
     const showNotifications = Boolean(notificationsEl);
     let cred = localStorage.getItem('isAuthenticated')
-    console.log(cred)
-    console.log(this.state.creds)
 
     return (
       <Fragment>
