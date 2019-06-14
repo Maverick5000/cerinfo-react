@@ -32,7 +32,8 @@ import {
   ImageOutlined as ImageIcon,
   InfoOutlined as InfoIcon,
   AccountBoxOutlined as AccountBoxIcon,
-  SettingsOutlined as SettingsIcon
+  SettingsOutlined as SettingsIcon,
+  LibraryBooks as LibraryBooksIcon
 } from '@material-ui/icons';
 
 // Component styles
@@ -125,7 +126,7 @@ class Sidebar extends Component {
             to="/libros"
           >
             <ListItemIcon className={classes.listItemIcon}>
-              <ShoppingBasketIcon />
+              <LibraryBooksIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
