@@ -89,9 +89,16 @@ class OrdersTable extends Component {
     this.getOrders(limit);
 
     const id = localStorage.getItem('id');
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = ''
+    if (tipo == 'Administrador'){
+      url = 'https://cerinfo-api.herokuapp.com/multas'
+    } else {
+      url = 'https://cerinfo-api.herokuapp.com/user/multas'
+    }
     //const id = '1'
 
-    axios.get(`https://cerinfo-api.herokuapp.com/user/multas`, { params: { usuario_id: id } })
+    axios.get(url, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nMultas: res.data });
       })
@@ -106,6 +113,7 @@ class OrdersTable extends Component {
     const { isLoading, orders, ordersTotal, nMultas } = this.state;
     const rootClassName = classNames(classes.root, className);
     const showOrders = !isLoading && orders.length > 0;
+    const tipo = localStorage.getItem('tipo_usuario');
 
     return (
       <Portlet className={rootClassName}>
@@ -143,21 +151,11 @@ class OrdersTable extends Component {
                     <TableCell align="left">Libro</TableCell>
                     <TableCell
                       align="left"
-                      sortDirection="desc"
-                    >
-                      <Tooltip
-                        enterDelay={300}
-                        title="Sort"
-                      >
-                        <TableSortLabel
-                          active
-                          direction="desc"
-                        >
-                          Fecha
-                        </TableSortLabel>
-                      </Tooltip>
+                    >Fecha
                     </TableCell>
                     <TableCell align="left">Monto</TableCell>
+                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null }
+                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null }
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -184,6 +182,12 @@ class OrdersTable extends Component {
                           {multa.monto_multa}
                         </div>
                       </TableCell>
+                      {tipo == 'Administrador' ? <TableCell>
+                        {multa.usuario.nombre_usuario}
+                      </TableCell> : null }
+                      {tipo == 'Administrador' ? <TableCell>
+                        {multa.usuario.registro_usuario}
+                      </TableCell> : null }
                     </TableRow>
                   ))}
                 </TableBody>

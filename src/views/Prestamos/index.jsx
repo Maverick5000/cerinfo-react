@@ -46,10 +46,10 @@ class Prestamos extends Component {
           >
             <Grid
                 item
-                lg={8}
-                md={12}
-                xl={9}
-                xs={12}
+                lg={10}
+                md={14}
+                xl={11}
+                xs={14}
               >
                 <OrdersTable className={classes.item} />
               </Grid>

@@ -90,8 +90,15 @@ class OrdersTable extends Component {
 
     const id = localStorage.getItem('id');
     //const id = '1'
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = ''
+    if (tipo == 'Administrador'){
+      url = 'https://cerinfo-api.herokuapp.com/prestamos'
+    } else {
+      url = `https://cerinfo-api.herokuapp.com/user/prestamos`
+    }
 
-    axios.get(`https://cerinfo-api.herokuapp.com/user/prestamos`, { params: { usuario_id: id } })
+    axios.get(url, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nPrestamos: res.data });
       })
@@ -106,6 +113,7 @@ class OrdersTable extends Component {
     const { isLoading, orders, ordersTotal, nPrestamos } = this.state;
     const rootClassName = classNames(classes.root, className);
     const showOrders = !isLoading && orders.length > 0;
+    const tipo = localStorage.getItem('tipo_usuario');
 
     return (
       <Portlet className={rootClassName}>
@@ -141,23 +149,10 @@ class OrdersTable extends Component {
                   <TableRow>
                     <TableCell>ID Prestamo</TableCell>
                     <TableCell align="left">Libro</TableCell>
-                    <TableCell
-                      align="left"
-                      sortDirection="desc"
-                    >
-                      <Tooltip
-                        enterDelay={300}
-                        title="Sort"
-                      >
-                        <TableSortLabel
-                          active
-                          direction="desc"
-                        >
-                          Fecha Prestamo
-                        </TableSortLabel>
-                      </Tooltip>
-                    </TableCell>
+                    <TableCell align="left"> Fecha Prestamo </TableCell>
                     <TableCell align="left">Fecha Devolucion</TableCell>
+                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null }
+                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null }
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -175,15 +170,14 @@ class OrdersTable extends Component {
                         {moment(prestamo.fecha_prestamo).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell>
-                        <div className={classes.statusWrapper}>
-                          <Status
-                            className={classes.status}
-                            color={statusColors[prestamo.fecha_devolucion]}
-                            size="sm"
-                          />
-                          {moment(prestamo.fecha_devolucion).format('DD/MM/YYYY')}
-                        </div>
+                        {moment(prestamo.fecha_devolucion).format('DD/MM/YYYY')}
                       </TableCell>
+                      {tipo == 'Administrador' ? <TableCell>
+                        {prestamo.usuario.nombre_usuario}
+                      </TableCell> : null }
+                      {tipo == 'Administrador' ? <TableCell>
+                        {prestamo.usuario.registro_usuario}
+                      </TableCell> : null }
                     </TableRow>
                   ))}
                 </TableBody>

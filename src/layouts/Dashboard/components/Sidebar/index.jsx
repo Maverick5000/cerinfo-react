@@ -33,7 +33,9 @@ import {
   InfoOutlined as InfoIcon,
   AccountBoxOutlined as AccountBoxIcon,
   SettingsOutlined as SettingsIcon,
-  LibraryBooks as LibraryBooksIcon
+  LibraryBooks as LibraryBooksIcon,
+  Warning as WarningIcon,
+  Book as BookIcon
 } from '@material-ui/icons';
 
 // Component styles
@@ -142,7 +144,7 @@ class Sidebar extends Component {
             to="/multas"
           >
             <ListItemIcon className={classes.listItemIcon}>
-              <LibraryBooksIcon />
+              <WarningIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
@@ -156,7 +158,7 @@ class Sidebar extends Component {
             to="/prestamos"
           >
             <ListItemIcon className={classes.listItemIcon}>
-              <LibraryBooksIcon />
+              <BookIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}

@@ -19,6 +19,7 @@ import styles from './styles';
 class ProductsToolbar extends Component {
   render() {
     const { classes, className } = this.props;
+    const tipo = localStorage.getItem('tipo_usuario');
 
     const rootClassName = classNames(classes.root, className);
 
@@ -26,21 +27,21 @@ class ProductsToolbar extends Component {
       <div className={rootClassName}>
         <div className={classes.row}>
           <span className={classes.spacer} />
-          <Button
+          {tipo == 'Administrador' ? <Button
             color="primary"
             size="small"
             variant="outlined"
           >
-            Add
-          </Button>
+            Agregar Libro
+          </Button> : null }
         </div>
         <div className={classes.row}>
           <SearchInput
             className={classes.searchInput}
-            placeholder="Search product"
+            placeholder="Buscar Libro"
           />
-          <span className={classes.spacer} />
-          <DisplayMode mode="grid" />
+          {/* <span className={classes.spacer} /> */}
+          {/* <DisplayMode mode="grid" /> */}
         </div>
       </div>
     );
