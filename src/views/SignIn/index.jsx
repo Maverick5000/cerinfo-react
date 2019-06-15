@@ -65,7 +65,7 @@ class SignIn extends Component {
 
   handleBack = () => {
     const { history } = this.props;
-    localStorage.setItem('isAuthenticated', false);
+    //localStorage.setItem('isAuthenticated', false);
     history.goBack();
   };
 
@@ -107,6 +107,7 @@ class SignIn extends Component {
           localStorage.setItem('nombre_usuario', res.data[0].nombre_usuario);
           localStorage.setItem('paterno_usuario', res.data[0].paterno_usuario);
           localStorage.setItem('materno_usuario', res.data[0].materno_usuario);
+          localStorage.setItem('registro_usuario', res.data[0].materno_usuario);
           localStorage.setItem('id', res.data[0].id);
           localStorage.setItem('isAuthenticated', true);
         })

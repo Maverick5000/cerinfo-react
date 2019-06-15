@@ -47,6 +47,7 @@ class Sidebar extends Component {
 
     const email = localStorage.getItem('email');
     const tipo = localStorage.getItem('tipo_usuario');
+    const auth = localStorage.getItem('isAuthenticated');
 
     return (
       <nav className={rootClassName}>
@@ -92,7 +93,7 @@ class Sidebar extends Component {
           component="div"
           disablePadding
         >
-          <ListItem
+          {auth == 'true' ? <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -105,7 +106,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Dashboard"
             />
-          </ListItem>
+          </ListItem> : null }
           {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
@@ -134,7 +135,7 @@ class Sidebar extends Component {
               primary="Libros"
             />
           </ListItem>
-          <ListItem
+          {auth == 'true' ? <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -147,8 +148,8 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Multas"
             />
-          </ListItem>
-          <ListItem
+          </ListItem> : null}
+          {auth == 'true' ? <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -161,8 +162,8 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Prestamos"
             />
-          </ListItem>
-          <ListItem
+          </ListItem> : null}
+          {auth == 'false' ? <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -175,7 +176,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Authentication"
             />
-          </ListItem>
+          </ListItem> : null}
           {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
@@ -204,7 +205,7 @@ class Sidebar extends Component {
               primary="Icons and Images"
             />
           </ListItem> */}
-          <ListItem
+          {auth == 'true' ? <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
@@ -217,7 +218,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Mi Cuenta"
             />
-          </ListItem>
+          </ListItem> : null }
           {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}

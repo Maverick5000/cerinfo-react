@@ -39,6 +39,7 @@ const styles = theme => ({
 class Dashboard extends Component {
   render() {
     const { classes } = this.props;
+    const auth = localStorage.getItem('isAuthenticated');
 
     return (
       <DashboardLayout title="Dashboard">
@@ -47,7 +48,7 @@ class Dashboard extends Component {
             container
             spacing={4}
           >
-            <Grid
+            {auth == 'true' ? <Grid
               item
               lg={3}
               sm={6}
@@ -55,8 +56,8 @@ class Dashboard extends Component {
               xs={12}
             >
               <Budget className={classes.item} />
-            </Grid>
-            <Grid
+            </Grid> : null }
+            {auth == 'true' ? <Grid
               item
               lg={3}
               sm={6}
@@ -64,8 +65,8 @@ class Dashboard extends Component {
               xs={12}
             >
               <Users className={classes.item} />
-            </Grid>
-            <Grid
+            </Grid> : null }
+            {auth == 'true' ? <Grid
               item
               lg={3}
               sm={6}
@@ -73,7 +74,7 @@ class Dashboard extends Component {
               xs={12}
             >
               <Progress className={classes.item} />
-            </Grid>
+            </Grid> : null }
             {/* <Grid
               item
               lg={3}
