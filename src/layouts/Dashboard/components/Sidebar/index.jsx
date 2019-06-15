@@ -46,6 +46,7 @@ class Sidebar extends Component {
     const rootClassName = classNames(classes.root, className);
 
     const email = localStorage.getItem('email');
+    const tipo = localStorage.getItem('tipo_usuario');
 
     return (
       <nav className={rootClassName}>
@@ -83,7 +84,7 @@ class Sidebar extends Component {
             className={classes.bioText}
             variant="caption"
           >
-            Estudiante
+            {tipo}
           </Typography>
         </div>
         <Divider className={classes.profileDivider} />

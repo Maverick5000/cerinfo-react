@@ -29,8 +29,8 @@ class Progress extends Component {
   }
 
   async componentDidMount() {
-    // const id = localStorage.getItem('id');
-    const id = '1'
+    const id = localStorage.getItem('id');
+    //const id = '1'
     let total = 0
     await axios.get(`https://cerinfo-api.herokuapp.com/user/multas`, { params: { usuario_id: id } })
       .then(res => {
