@@ -78,8 +78,9 @@ class Topbar extends Component {
   handleSignOut = () => {
     const { history } = this.props;
 
-    localStorage.setItem('isAuthenticated', false);
-    localStorage.setItem('email', '');
+    // localStorage.setItem('isAuthenticated', false);
+    // localStorage.setItem('email', '');
+    localStorage.clear();
     this.setState({creds: false});
     history.push('/sign-in');
   };
@@ -142,7 +143,7 @@ class Topbar extends Component {
             <IconButton
               className={classes.signOutButton}
               onClick={this.handleSignOut}>
-            {this.state.creds == 'false' ? <OpenIcon />  : <InputIcon />}
+            {this.state.creds == null ? <OpenIcon />  : <InputIcon />}
             </IconButton>
           </Toolbar>
         </div>
