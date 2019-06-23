@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b6518135f0c3d3a9dac9f3548d7451a4",
+    "revision": "5c428df3b92da24d70c85d4ab76c6327",
     "url": "/cerinfo-react/index.html"
   },
   {
-    "revision": "6c3b993aa0645fc90a37",
+    "revision": "cdddcf833bcc6eb48785",
     "url": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css"
   },
   {
-    "revision": "35a39459647686b18316",
+    "revision": "952f775fa6b043af044b",
     "url": "/cerinfo-react/static/css/main.f4cef799.chunk.css"
   },
   {
-    "revision": "6c3b993aa0645fc90a37",
-    "url": "/cerinfo-react/static/js/2.24db9a28.chunk.js"
+    "revision": "cdddcf833bcc6eb48785",
+    "url": "/cerinfo-react/static/js/2.067fc7af.chunk.js"
   },
   {
-    "revision": "35a39459647686b18316",
-    "url": "/cerinfo-react/static/js/main.c65d61e3.chunk.js"
+    "revision": "952f775fa6b043af044b",
+    "url": "/cerinfo-react/static/js/main.92b63ea3.chunk.js"
   },
   {
     "revision": "a1499476f42ac3d4ac2a",

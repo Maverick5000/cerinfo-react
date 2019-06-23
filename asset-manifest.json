@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cerinfo-react/static/css/main.f4cef799.chunk.css",
-    "main.js": "/cerinfo-react/static/js/main.c65d61e3.chunk.js",
-    "main.js.map": "/cerinfo-react/static/js/main.c65d61e3.chunk.js.map",
+    "main.js": "/cerinfo-react/static/js/main.92b63ea3.chunk.js",
+    "main.js.map": "/cerinfo-react/static/js/main.92b63ea3.chunk.js.map",
     "runtime~main.js": "/cerinfo-react/static/js/runtime~main.152ba821.js",
     "runtime~main.js.map": "/cerinfo-react/static/js/runtime~main.152ba821.js.map",
     "static/css/2.fa4a79a6.chunk.css": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css",
-    "static/js/2.24db9a28.chunk.js": "/cerinfo-react/static/js/2.24db9a28.chunk.js",
-    "static/js/2.24db9a28.chunk.js.map": "/cerinfo-react/static/js/2.24db9a28.chunk.js.map",
+    "static/js/2.067fc7af.chunk.js": "/cerinfo-react/static/js/2.067fc7af.chunk.js",
+    "static/js/2.067fc7af.chunk.js.map": "/cerinfo-react/static/js/2.067fc7af.chunk.js.map",
     "index.html": "/cerinfo-react/index.html",
-    "precache-manifest.6803bc369afd74e1bc3c019c5da29667.js": "/cerinfo-react/precache-manifest.6803bc369afd74e1bc3c019c5da29667.js",
+    "precache-manifest.a2395dbf6a585229fce7656999a82377.js": "/cerinfo-react/precache-manifest.a2395dbf6a585229fce7656999a82377.js",
     "service-worker.js": "/cerinfo-react/service-worker.js",
     "static/css/2.fa4a79a6.chunk.css.map": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css.map",
     "static/css/main.f4cef799.chunk.css.map": "/cerinfo-react/static/css/main.f4cef799.chunk.css.map"
