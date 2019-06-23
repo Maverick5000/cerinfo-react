@@ -11,6 +11,8 @@ import { Grid, Typography } from '@material-ui/core';
 
 import { Dashboard as DashboardLayout } from 'layouts';
 
+import { MultasToolbar } from './components';
+
 import {
   OrdersTable
 } from './components';
@@ -39,20 +41,21 @@ class Multas extends Component {
     return (
       <DashboardLayout title="Multas">
         <div className={classes.root}>
+          <MultasToolbar />
           <Grid
             container
             justify="center"
             spacing={4}
           >
             <Grid
-                item
-                lg={10}
-                md={14}
-                xl={11}
-                xs={14}
-              >
-                <OrdersTable className={classes.item} />
-              </Grid>
+              item
+              lg={10}
+              md={14}
+              xl={11}
+              xs={14}
+            >
+              <OrdersTable className={classes.item} />
+            </Grid>
           </Grid>
         </div>
       </DashboardLayout>

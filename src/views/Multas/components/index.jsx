@@ -1,2 +1,3 @@
 export { default as OrdersTable } from './OrdersTable';
+export { default as MultasToolbar } from './MultasToolbar';
 
