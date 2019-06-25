@@ -92,7 +92,7 @@ class OrdersTable extends Component {
     //const id = '1'
     const tipo = localStorage.getItem('tipo_usuario');
     let url = ''
-    if (tipo == 'Administrador'){
+    if (tipo == 'Administrador') {
       url = 'https://cerinfo-api.herokuapp.com/prestamos'
     } else {
       url = `https://cerinfo-api.herokuapp.com/user/prestamos`
@@ -101,6 +101,20 @@ class OrdersTable extends Component {
     axios.get(url, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nPrestamos: res.data });
+      })
+  }
+
+  deletePrestamo(id) {
+    const u_id = localStorage.getItem('id');
+    let url = 'https://cerinfo-api.herokuapp.com/prestamos/'
+    this.setState({ isLoading: true });
+    axios.delete(url + id)
+      .then(res => {
+        console.log(res)
+        axios.get(url, { params: { usuario_id: u_id } })
+          .then(res => {
+            this.setState({ nPrestamos: res.data, isLoading: false });
+          })
       })
   }
 
@@ -151,8 +165,9 @@ class OrdersTable extends Component {
                     <TableCell align="left">Libro</TableCell>
                     <TableCell align="left"> Fecha Prestamo </TableCell>
                     <TableCell align="left">Fecha Devolucion</TableCell>
-                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null }
-                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null }
+                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Dar de baja</TableCell> : null}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -174,10 +189,21 @@ class OrdersTable extends Component {
                       </TableCell>
                       {tipo == 'Administrador' ? <TableCell>
                         {prestamo.usuario.nombre_usuario}
-                      </TableCell> : null }
+                      </TableCell> : null}
                       {tipo == 'Administrador' ? <TableCell>
                         {prestamo.usuario.registro_usuario}
-                      </TableCell> : null }
+                      </TableCell> : null}
+                      {tipo == 'Administrador' ? <TableCell>
+                        <Button
+                          color="primary"
+                          size="small"
+                          variant="outlined"
+                          type="button"
+                          onClick={() => { this.deletePrestamo(prestamo.id) }}
+                        >
+                          X
+                        </Button>
+                      </TableCell> : null}
                     </TableRow>
                   ))}
                 </TableBody>

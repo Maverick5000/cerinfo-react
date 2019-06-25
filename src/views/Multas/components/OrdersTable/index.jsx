@@ -91,7 +91,7 @@ class OrdersTable extends Component {
     const id = localStorage.getItem('id');
     const tipo = localStorage.getItem('tipo_usuario');
     let url = ''
-    if (tipo == 'Administrador'){
+    if (tipo == 'Administrador') {
       url = 'https://cerinfo-api.herokuapp.com/multas'
     } else {
       url = 'https://cerinfo-api.herokuapp.com/user/multas'
@@ -101,6 +101,20 @@ class OrdersTable extends Component {
     axios.get(url, { params: { usuario_id: id } })
       .then(res => {
         this.setState({ nMultas: res.data });
+      })
+  }
+
+  deleteMulta(id) {
+    const u_id = localStorage.getItem('id');
+    let url = 'https://cerinfo-api.herokuapp.com/multas/'
+    this.setState({ isLoading: true });
+    axios.delete(url + id)
+      .then(res => {
+        console.log(res)
+        axios.get(url, { params: { usuario_id: u_id } })
+          .then(res => {
+            this.setState({ nMultas: res.data, isLoading: false });
+          })
       })
   }
 
@@ -154,8 +168,9 @@ class OrdersTable extends Component {
                     >Fecha
                     </TableCell>
                     <TableCell align="left">Monto</TableCell>
-                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null }
-                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null }
+                    {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Dar de baja</TableCell> : null}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -184,10 +199,21 @@ class OrdersTable extends Component {
                       </TableCell>
                       {tipo == 'Administrador' ? <TableCell>
                         {multa.usuario.nombre_usuario}
-                      </TableCell> : null }
+                      </TableCell> : null}
                       {tipo == 'Administrador' ? <TableCell>
                         {multa.usuario.registro_usuario}
-                      </TableCell> : null }
+                      </TableCell> : null}
+                      {tipo == 'Administrador' ? <TableCell>
+                        <Button
+                          color="primary"
+                          size="small"
+                          variant="outlined"
+                          type="button"
+                          onClick={() => { this.deleteMulta(multa.id) }}
+                        >
+                          X
+                        </Button>
+                      </TableCell> : null}
                     </TableRow>
                   ))}
                 </TableBody>

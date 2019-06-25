@@ -71,12 +71,16 @@ class ProductList extends Component {
     }
   }
 
-  async getLibros() {
-    await axios.get(`https://cerinfo-api.herokuapp.com/libros`)
+  getLibros() {
+    axios.get(`https://cerinfo-api.herokuapp.com/libros`)
       .then(res => {
         const libros = res.data;
         this.setState({ libros });
       })
+  }
+
+  loadingAction = (bool) => {
+    this.setState({ isLoading: bool });
   }
 
   componentWillMount() {
@@ -124,7 +128,7 @@ class ProductList extends Component {
             xs={12}
           >
             <Link to="#">
-              <ProductCardLibro libro={libro} />
+              <ProductCardLibro loader={this.loadingAction} libro={libro} />
             </Link>
           </Grid>
         ))}
@@ -139,7 +143,7 @@ class ProductList extends Component {
       <DashboardLayout title="Libros">
         <div className={classes.root}>
           <ProductsToolbar />
-          <div className={classes.content}>{this.state.libros ? this.renderProducts() :<div className={classes.progressWrapper}> <CircularProgress /> </div>}</div>
+          <div className={classes.content}>{this.state.libros ? this.renderProducts() : <div className={classes.progressWrapper}> <CircularProgress /> </div>}</div>
           <div className={classes.pagination}>
             <Typography variant="caption">1-6 of 20</Typography>
             <IconButton>
