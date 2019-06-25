@@ -35,7 +35,8 @@ import {
   SettingsOutlined as SettingsIcon,
   LibraryBooks as LibraryBooksIcon,
   Warning as WarningIcon,
-  Book as BookIcon
+  Book as BookIcon,
+  Bookmarks as BookmarkIcon
 } from '@material-ui/icons';
 
 // Component styles
@@ -62,17 +63,17 @@ class Sidebar extends Component {
               alt="CERINFO logo"
               className={classes.logoImage}
               src="https://i.ibb.co/s1g2nNn/cerinfo-logo.png"
-              style={{height: '12vh', width: '8vw', padding: '5em'}}
+              style={{ height: '12vh', width: '8vw', padding: '5em' }}
             />
           </Link>
         </div>
-        <br/>
+        <br />
         <Divider className={classes.logoDivider} />
         <div className={classes.profile}>
           <Link to="/account">
             <Gravatar
               email={email ? email : 'test@gmail.com'}
-              default= 'identicon'
+              default='identicon'
               className={classes.avatar}
               size={150}
             />
@@ -108,7 +109,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Dashboard"
             />
-          </ListItem> : null }
+          </ListItem> : null}
           {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}
@@ -163,6 +164,20 @@ class Sidebar extends Component {
             <ListItemText
               classes={{ primary: classes.listItemText }}
               primary="Prestamos"
+            />
+          </ListItem> : null}
+          {auth == 'true' ? <ListItem
+            activeClassName={classes.activeListItem}
+            className={classes.listItem}
+            component={NavLink}
+            to="/solicitudes"
+          >
+            <ListItemIcon className={classes.listItemIcon}>
+              <BookmarkIcon />
+            </ListItemIcon>
+            <ListItemText
+              classes={{ primary: classes.listItemText }}
+              primary="Solicitudes"
             />
           </ListItem> : null}
           {auth == 'false' ? <ListItem
@@ -220,7 +235,7 @@ class Sidebar extends Component {
               classes={{ primary: classes.listItemText }}
               primary="Mi Cuenta"
             />
-          </ListItem> : null }
+          </ListItem> : null}
           {/* <ListItem
             activeClassName={classes.activeListItem}
             className={classes.listItem}

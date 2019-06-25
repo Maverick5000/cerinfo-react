@@ -15,6 +15,7 @@ import UnderDevelopment from './views/UnderDevelopment';
 import NotFound from './views/NotFound';
 import Multas from './views/Multas';
 import Prestamos from './views/Prestamos';
+import Solicitudes from './views/Solicitudes';
 
 export default class Routes extends Component {
   render() {
@@ -89,6 +90,11 @@ export default class Routes extends Component {
           component={Prestamos}
           exact
           path="/Prestamos"
+        />
+        <Route
+          component={Solicitudes}
+          exact
+          path="/Solicitudes"
         />
         <Redirect to="/dashboard" />
       </Switch>
