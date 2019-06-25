@@ -43,6 +43,21 @@ class ProductCardLibro extends Component {
       })
   }
 
+  solicitarLibro(id) {
+    if (window.confirm('Solicitar este libro?')) {
+      const u_id = localStorage.getItem('id');
+      axios.post('https://cerinfo-api.herokuapp.com/solicituds', {
+        usuario_id: u_id,
+        libro_id: id
+      }).then(res => {
+        console.log(res)
+        window.alert('Libro Solicitado')
+      }).catch(function (error) {
+        console.log(error);
+      })
+    }
+  }
+
   render() {
     const { classes, className, libro } = this.props;
     const tipo = localStorage.getItem('tipo_usuario');
@@ -99,7 +114,16 @@ class ProductCardLibro extends Component {
               >
                 Eliminar libro
             </Button>
-              : null}
+              : <Button
+                color="primary"
+                size="small"
+                variant="outlined"
+                type="button"
+                style={{ marginLeft: '1vw', width: '7vw' }}
+                onClick={() => { this.solicitarLibro(libro.id) }}
+              >
+                Solicitar libro
+          </Button>}
           </div>
         </Paper> : null}
       </div>
