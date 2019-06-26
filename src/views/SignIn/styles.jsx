@@ -17,7 +17,7 @@ export default theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: 'url(/images/sign_up_1.jpg)',
+    backgroundImage: 'url(https://www.pem.cam.ac.uk/sites/default/files/hero/e81a7985_1.jpg)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
