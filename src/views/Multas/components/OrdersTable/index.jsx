@@ -107,7 +107,7 @@ class OrdersTable extends Component {
       .then(res => {
         console.log(res)
         this.props.reload();
-        this.setState({isLoading: false });
+        this.setState({ isLoading: false });
       })
   }
 
@@ -155,7 +155,7 @@ class OrdersTable extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID Multa</TableCell>
+                    <TableCell className={classes.tablecell}>ID Multa</TableCell>
                     <TableCell align="left">Libro</TableCell>
                     <TableCell
                       align="left"
@@ -174,14 +174,14 @@ class OrdersTable extends Component {
                       hover
                       key={multa.id}
                     >
-                      <TableCell>{multa.id}</TableCell>
-                      <TableCell className={classes.customerCell}>
+                      <TableCell className={classes.tablecell}>{multa.id}</TableCell>
+                      <TableCell className={classes.tablecell}>
                         {multa.libro.titulo_libro}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className={classes.tablecell}>
                         {moment(multa.created_at).format('DD/MM/YYYY')}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className={classes.tablecell}>
                         <div className={classes.statusWrapper}>
                           <Status
                             className={classes.status}
@@ -191,13 +191,13 @@ class OrdersTable extends Component {
                           {multa.monto_multa}
                         </div>
                       </TableCell>
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {multa.usuario.nombre_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {multa.usuario.registro_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         <Button
                           color="primary"
                           size="small"

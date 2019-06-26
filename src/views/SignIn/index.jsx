@@ -152,21 +152,20 @@ class SignIn extends Component {
                   className={classes.quoteText}
                   variant="h1"
                 >
-                  Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                  they sold out High Life.
+                  Universidad Nur
                 </Typography>
                 <div className={classes.person}>
                   <Typography
                     className={classes.name}
                     variant="body1"
                   >
-                    Takamaru Ayako
+                    Sistema de biblioteca
                   </Typography>
                   <Typography
                     className={classes.bio}
                     variant="body2"
                   >
-                    Manager at inVision
+                    Cerinfo
                   </Typography>
                 </div>
               </div>
@@ -193,9 +192,9 @@ class SignIn extends Component {
                     className={classes.title}
                     variant="h2"
                   >
-                    Sign in
+                    Login
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     className={classes.subtitle}
                     variant="body1"
                   >
@@ -225,11 +224,11 @@ class SignIn extends Component {
                     variant="body1"
                   >
                     or login with email address
-                  </Typography>
+                  </Typography> */}
                   <div className={classes.fields}>
                     <TextField
                       className={classes.textField}
-                      label="Email address"
+                      label="Correo Electronico"
                       name="email"
                       onChange={event =>
                         this.handleFieldChange('email', event.target.value)
@@ -288,7 +287,7 @@ class SignIn extends Component {
                         Sign in now
                     </Button>
                     )}
-                  <Typography
+                  {/* <Typography
                     className={classes.signUp}
                     variant="body1"
                   >
@@ -299,7 +298,7 @@ class SignIn extends Component {
                     >
                       Sign up
                     </Link>
-                  </Typography>
+                  </Typography> */}
                 </form>
               </div>
             </div>

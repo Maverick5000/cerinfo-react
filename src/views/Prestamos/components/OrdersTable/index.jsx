@@ -244,10 +244,10 @@ class OrdersTable extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID Prestamo</TableCell>
-                    <TableCell align="left">Libro</TableCell>
-                    <TableCell align="left"> Fecha Prestamo </TableCell>
-                    <TableCell align="left">Fecha Devolucion</TableCell>
+                    <TableCell className={classes.tablecell}>ID Prestamo</TableCell>
+                    <TableCell className={classes.tablecell} align="left">Libro</TableCell>
+                    <TableCell className={classes.tablecell} align="left"> Fecha Prestamo </TableCell>
+                    <TableCell className={classes.tablecell} align="left">Fecha Devolucion</TableCell>
                     {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Dar de baja</TableCell> : null}
@@ -261,23 +261,23 @@ class OrdersTable extends Component {
                       hover
                       key={prestamo.id}
                     >
-                      <TableCell>{prestamo.id}</TableCell>
-                      <TableCell className={classes.customerCell}>
+                      <TableCell className={classes.tablecell}>{prestamo.id}</TableCell>
+                      <TableCell className={classes.tablecell}>
                         {prestamo.libro.titulo_libro}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className={classes.tablecell}>
                         {moment(prestamo.fecha_prestamo).format('DD/MM/YYYY')}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className={classes.tablecell}>
                         {moment(prestamo.fecha_devolucion).format('DD/MM/YYYY')}
                       </TableCell>
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {prestamo.usuario.nombre_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {prestamo.usuario.registro_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         <Button
                           color="primary"
                           size="small"
@@ -288,7 +288,7 @@ class OrdersTable extends Component {
                           X
                         </Button>
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         <Button
                           color="primary"
                           size="small"

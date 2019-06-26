@@ -27,5 +27,8 @@ export default theme => ({
   },
   status: {
     marginRight: theme.spacing.unit
-  }
+  },
+  tablecell: {
+    padding: '12px 38px 12px 22px'
+  },
 });

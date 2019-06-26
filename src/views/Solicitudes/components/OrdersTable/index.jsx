@@ -161,7 +161,7 @@ class OrdersTable extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID Prestamo</TableCell>
+                    <TableCell className={classes.tablecell}>ID Prestamo</TableCell>
                     <TableCell align="left">Libro</TableCell>
                     <TableCell align="left"> Fecha Solicitud </TableCell>
                     {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
@@ -176,20 +176,20 @@ class OrdersTable extends Component {
                       hover
                       key={solicitud.id}
                     >
-                      <TableCell>{solicitud.id}</TableCell>
-                      <TableCell className={classes.customerCell}>
+                      <TableCell className={classes.tablecell}>{solicitud.id}</TableCell>
+                      <TableCell className={classes.tablecell}>
                         {solicitud.libro.titulo_libro}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className={classes.tablecell}>
                         {moment(solicitud.created_at).format('DD/MM/YYYY')}
                       </TableCell>
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {solicitud.usuario.nombre_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         {solicitud.usuario.registro_usuario}
                       </TableCell> : null}
-                      {tipo == 'Administrador' ? <TableCell>
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
                         <Button
                           color="primary"
                           size="small"

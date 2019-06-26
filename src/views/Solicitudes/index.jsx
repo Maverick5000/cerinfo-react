@@ -49,10 +49,10 @@ class Solicitudes extends Component {
           >
             <Grid
               item
-              lg={10}
-              md={14}
-              xl={11}
-              xs={14}
+              lg={12}
+              md={16}
+              xl={13}
+              xs={16}
             >
               <OrdersTable className={classes.item} />
             </Grid>
