@@ -106,10 +106,8 @@ class OrdersTable extends Component {
     axios.delete(url + id)
       .then(res => {
         console.log(res)
-        axios.get(url, { params: { usuario_id: u_id } })
-          .then(res => {
-            this.setState({ nMultas: res.data, isLoading: false });
-          })
+        this.props.reload();
+        this.setState({isLoading: false });
       })
   }
 

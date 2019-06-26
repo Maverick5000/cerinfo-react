@@ -82,7 +82,7 @@ class Multas extends Component {
               xl={11}
               xs={14}
             >
-              {this.state.nMultas ? <OrdersTable multas={this.state.nMultas} className={classes.item} /> : null}
+              {this.state.nMultas ? <OrdersTable reload={this.reloadMultas} multas={this.state.nMultas} className={classes.item} /> : null}
             </Grid>
           </Grid>
         </div>
