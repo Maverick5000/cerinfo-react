@@ -41,6 +41,13 @@ import {
 // Component styles
 import styles from './styles';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+
 const statusColors = {
   delivered: 'success',
   pending: 'info',
@@ -55,7 +62,13 @@ class OrdersTable extends Component {
     limit: 10,
     orders: [],
     ordersTotal: 0,
-    nPrestamos: []
+    nPrestamos: [],
+    open: false,
+    detalle_multa: '',
+    estado_multa: '',
+    monto_multa: '',
+    selectedUser: '',
+    selectedLibro: ''
   };
 
   async getOrders(limit) {
@@ -118,8 +131,34 @@ class OrdersTable extends Component {
       })
   }
 
+  crearMulta(data) {
+    axios.post('https://cerinfo-api.herokuapp.com/multas', {
+      usuario_id: data.selectedUser,
+      libro_id: data.selectedLibro,
+      detalle_multa: data.detalle_multa,
+      estado_multa: data.estado_multa,
+      monto_multa: data.monto_multa
+    })
+      .then(res => {
+        console.log(res)
+        this.handleClose()
+      })
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   componentWillUnmount() {
     this.signal = false;
+  }
+
+  handleClickOpen = (selectedUser, selectedLibro) => {
+    this.setState({ open: true, selectedUser: selectedUser, selectedLibro: selectedLibro })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
   }
 
   render() {
@@ -152,6 +191,50 @@ class OrdersTable extends Component {
             className={classes.portletContent}
             noPadding
           >
+            {this.state.open ? <Dialog fullWidth={'xl'} open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+              <DialogTitle id="form-dialog-title">Crear Multa</DialogTitle>
+              <DialogContent style={{ display: 'flex', flexDirection: 'column' }}>
+                <DialogContentText>
+                  Crear nueva multa
+            </DialogContentText>
+                <TextField
+                  onChange={this.handleChange.bind(this)}
+                  name={'monto_multa'}
+                  autoFocus
+                  margin="dense"
+                  id="monto_multa"
+                  label="Monto"
+                  type="number"
+                  fullWidth
+                />
+                <TextField
+                  name={'detalle_multa'}
+                  onChange={this.handleChange.bind(this)}
+                  margin="dense"
+                  id="detalle_multa"
+                  label="Detalle"
+                  type="text"
+                  fullWidth
+                />
+                <TextField
+                  name={'estado_multa'}
+                  onChange={this.handleChange.bind(this)}
+                  margin="dense"
+                  id="estado_multa"
+                  label="Estado"
+                  type="text"
+                  fullWidth
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button type={'button'} onClick={this.handleClose} color="primary">
+                  Cancelar
+          </Button>
+                <Button type={'button'} onClick={() => { this.crearMulta(this.state) }} color="primary">
+                  Crear
+          </Button>
+              </DialogActions>
+            </Dialog> : null}
             {isLoading && (
               <div className={classes.progressWrapper}>
                 <CircularProgress />
@@ -168,6 +251,7 @@ class OrdersTable extends Component {
                     {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Dar de baja</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Crear Multa</TableCell> : null}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -202,6 +286,17 @@ class OrdersTable extends Component {
                           onClick={() => { this.deletePrestamo(prestamo.id) }}
                         >
                           X
+                        </Button>
+                      </TableCell> : null}
+                      {tipo == 'Administrador' ? <TableCell>
+                        <Button
+                          color="primary"
+                          size="small"
+                          variant="outlined"
+                          type="button"
+                          onClick={() => { this.handleClickOpen(prestamo.usuario.id, prestamo.libro.id) }}
+                        >
+                          Crear Multa
                         </Button>
                       </TableCell> : null}
                     </TableRow>
