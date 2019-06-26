@@ -97,11 +97,6 @@ class OrdersTable extends Component {
       url = 'https://cerinfo-api.herokuapp.com/user/multas'
     }
     //const id = '1'
-
-    axios.get(url, { params: { usuario_id: id } })
-      .then(res => {
-        this.setState({ nMultas: res.data });
-      })
   }
 
   deleteMulta(id) {
@@ -124,7 +119,8 @@ class OrdersTable extends Component {
 
   render() {
     const { classes, className } = this.props;
-    const { isLoading, orders, ordersTotal, nMultas } = this.state;
+    const { isLoading, orders, ordersTotal } = this.state;
+    const nMultas = this.props.multas
     const rootClassName = classNames(classes.root, className);
     const showOrders = !isLoading && orders.length > 0;
     const tipo = localStorage.getItem('tipo_usuario');

@@ -59,6 +59,7 @@ class MultasToolbar extends Component {
     delete data['users']
     delete data['open']
     this.saveMulta(data)
+    this.handleClose()
     console.log(data)
   }
 
@@ -83,6 +84,7 @@ class MultasToolbar extends Component {
         .then(res => {
           console.log(res)
           this.handleClose()
+          this.props.reload()
         })
     } catch (error) {
       console.error(error);

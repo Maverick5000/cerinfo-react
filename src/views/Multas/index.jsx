@@ -13,6 +13,8 @@ import { Dashboard as DashboardLayout } from 'layouts';
 
 import { MultasToolbar } from './components';
 
+import axios from 'axios';
+
 import {
   OrdersTable
 } from './components';
@@ -35,13 +37,39 @@ const styles = theme => ({
 });
 
 class Multas extends Component {
+
+  state = {
+    nMultas: null
+  };
+
+  reloadMultas = () => {
+    const id = localStorage.getItem('id');
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = ''
+    if (tipo == 'Administrador') {
+      url = 'https://cerinfo-api.herokuapp.com/multas'
+    } else {
+      url = 'https://cerinfo-api.herokuapp.com/user/multas'
+    }
+    //const id = '1'
+
+    axios.get(url, { params: { usuario_id: id } })
+      .then(res => {
+        this.setState({ nMultas: res.data });
+      })
+  }
+
+  componentDidMount() {
+    this.reloadMultas()
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
       <DashboardLayout title="Multas">
         <div className={classes.root}>
-          <MultasToolbar />
+          <MultasToolbar reload={this.reloadMultas} />
           <Grid
             container
             justify="center"
@@ -54,7 +82,7 @@ class Multas extends Component {
               xl={11}
               xs={14}
             >
-              <OrdersTable className={classes.item} />
+              {this.state.nMultas ? <OrdersTable multas={this.state.nMultas} className={classes.item} /> : null}
             </Grid>
           </Grid>
         </div>
