@@ -183,6 +183,7 @@ class ProductsToolbar extends Component {
           <SearchInput
             className={classes.searchInput}
             placeholder="Buscar Libro"
+            onChange={this.props.search}
           />
           {this.state.open ? <Dialog fullWidth={'xl'} open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Crear libro</DialogTitle>

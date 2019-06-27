@@ -44,7 +44,9 @@ class ProductList extends Component {
     limit: 6,
     products: [],
     productsTotal: 0,
-    error: null
+    error: null,
+    search: false,
+    searchString: ''
   };
 
   async getProducts(limit) {
@@ -96,6 +98,15 @@ class ProductList extends Component {
     this.signal = false;
   }
 
+  searchFunc = (string) => {
+    if (string.target.value == '') {
+      this.setState({ search: false });
+    } else {
+      this.setState({ search: true, searchString: string.target.value });
+    }
+
+  }
+
   renderProducts() {
     const { classes } = this.props;
     const { isLoading, products, libros } = this.state;
@@ -119,7 +130,19 @@ class ProductList extends Component {
         container
         spacing={3}
       >
-        {libros.map(libro => (
+        {this.state.search == false ? libros.map(libro => (
+          <Grid
+            item
+            key={libro.id}
+            lg={4}
+            md={6}
+            xs={12}
+          >
+            <Link to="#">
+              <ProductCardLibro loader={this.loadingAction} libro={libro} />
+            </Link>
+          </Grid>
+        )) : libros.filter(libro => (this.state.searchString.toLowerCase() == libro.titulo_libro.toLowerCase())).map(libro => (
           <Grid
             item
             key={libro.id}
@@ -142,7 +165,7 @@ class ProductList extends Component {
     return (
       <DashboardLayout title="Libros">
         <div className={classes.root}>
-          <ProductsToolbar />
+          <ProductsToolbar search={this.searchFunc} />
           <div className={classes.content}>{this.state.libros ? this.renderProducts() : <div className={classes.progressWrapper}> <CircularProgress /> </div>}</div>
           <div className={classes.pagination}>
             <Typography variant="caption">1-6 of 20</Typography>
