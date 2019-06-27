@@ -40,6 +40,17 @@ import {
 
 // Component styles
 import styles from './styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const statusColors = {
   delivered: 'success',
@@ -55,7 +66,9 @@ class OrdersTable extends Component {
     limit: 10,
     orders: [],
     ordersTotal: 0,
-    nSolicitud: []
+    nSolicitud: [],
+    selectedUser: '',
+    selectedLibro: ''
   };
 
   async getOrders(limit) {
@@ -118,8 +131,37 @@ class OrdersTable extends Component {
       })
   }
 
+  crearPrestamo(data) {
+    axios.post('https://cerinfo-api.herokuapp.com/prestamos', {
+      usuario_id: data.selectedUser,
+      libro_id: data.selectedLibro,
+      fecha_devolucion: data.fecha_devolucion,
+      fecha_prestamo: Date()
+    })
+      .then(res => {
+        console.log(res)
+        this.handleClose()
+      })
+  }
+
+  handleClickOpen = (selectedUser, selectedLibro) => {
+    this.setState({ open: true, selectedUser: selectedUser, selectedLibro: selectedLibro })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
+  }
+
   componentWillUnmount() {
     this.signal = false;
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleChangeDate(e) {
+    this.setState({ fecha_devolucion: e });
   }
 
   render() {
@@ -152,6 +194,36 @@ class OrdersTable extends Component {
             className={classes.portletContent}
             noPadding
           >
+            {this.state.open ? <Dialog fullWidth={'xl'} open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+              <DialogTitle id="form-dialog-title">Crear Prestamo</DialogTitle>
+              <DialogContent style={{ display: 'flex', flexDirection: 'column' }}>
+                <DialogContentText>
+                  Crear nuevo prestamo
+            </DialogContentText>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    margin="normal"
+                    id="fecha_devolucion"
+                    label="Fecha de devolucion"
+                    format="dd/MM/yyyy"
+                    minDate={new Date()}
+                    value={this.state.fecha_devolucion}
+                    onChange={this.handleChangeDate.bind(this)}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </DialogContent>
+              <DialogActions>
+                <Button type={'button'} onClick={this.handleClose} color="primary">
+                  Cancelar
+          </Button>
+                <Button type={'button'} onClick={() => { this.crearPrestamo(this.state) }} color="primary">
+                  Crear
+          </Button>
+              </DialogActions>
+            </Dialog> : null}
             {isLoading && (
               <div className={classes.progressWrapper}>
                 <CircularProgress />
@@ -167,6 +239,7 @@ class OrdersTable extends Component {
                     {tipo == 'Administrador' ? <TableCell align="left">Usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Registro de usuario</TableCell> : null}
                     {tipo == 'Administrador' ? <TableCell align="left">Dar de baja</TableCell> : null}
+                    {tipo == 'Administrador' ? <TableCell align="left">Crear Prestamo</TableCell> : null}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -198,6 +271,17 @@ class OrdersTable extends Component {
                           onClick={() => { this.deleteSolicitud(solicitud.id) }}
                         >
                           X
+                        </Button>
+                      </TableCell> : null}
+                      {tipo == 'Administrador' ? <TableCell className={classes.tablecell}>
+                        <Button
+                          color="primary"
+                          size="small"
+                          variant="outlined"
+                          type="button"
+                          onClick={() => { this.handleClickOpen(solicitud.usuario.id, solicitud.libro.id) }}
+                        >
+                          Crear Prestamo
                         </Button>
                       </TableCell> : null}
                     </TableRow>
