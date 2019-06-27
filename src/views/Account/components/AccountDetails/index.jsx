@@ -64,7 +64,7 @@ class Account extends Component {
         {...rest}
         className={rootClassName}
       >
-        <PortletHeader>
+        {/* <PortletHeader>
           <PortletLabel
             subtitle="The information can be edited"
             title="Profile"
@@ -150,7 +150,7 @@ class Account extends Component {
           >
             Save details
           </Button>
-        </PortletFooter>
+        </PortletFooter> */}
       </Portlet>
     );
   }
