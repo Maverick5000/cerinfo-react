@@ -74,16 +74,15 @@ class ProductList extends Component {
   }
 
   getLibros() {
-    axios.get(`https://cerinfo-api.herokuapp.com/libros`)
-      .then(res => {
-        const libros = res.data;
-        this.setState({ libros });
-      })
+    axios.get(`https://cerinfo-api.herokuapp.com/libros`).then(res => {
+      const libros = res.data;
+      this.setState({ libros });
+    });
   }
 
-  loadingAction = (bool) => {
+  loadingAction = bool => {
     this.setState({ isLoading: bool });
-  }
+  };
 
   componentWillMount() {
     this.signal = true;
@@ -98,14 +97,13 @@ class ProductList extends Component {
     this.signal = false;
   }
 
-  searchFunc = (string) => {
+  searchFunc = string => {
     if (string.target.value == '') {
       this.setState({ search: false });
     } else {
       this.setState({ search: true, searchString: string.target.value });
     }
-
-  }
+  };
 
   renderProducts() {
     const { classes } = this.props;
@@ -121,40 +119,36 @@ class ProductList extends Component {
 
     if (libros.length === 0) {
       return (
-        <Typography variant="h6">There are no products available</Typography>
+        <Typography variant='h6'>There are no products available</Typography>
       );
     }
 
     return (
-      <Grid
-        container
-        spacing={3}
-      >
-        {this.state.search == false ? libros.map(libro => (
-          <Grid
-            item
-            key={libro.id}
-            lg={4}
-            md={6}
-            xs={12}
-          >
-            <Link to="#">
-              <ProductCardLibro loader={this.loadingAction} libro={libro} />
-            </Link>
-          </Grid>
-        )) : libros.filter(libro => (this.state.searchString.toLowerCase() == libro.titulo_libro.toLowerCase())).map(libro => (
-          <Grid
-            item
-            key={libro.id}
-            lg={4}
-            md={6}
-            xs={12}
-          >
-            <Link to="#">
-              <ProductCardLibro loader={this.loadingAction} libro={libro} />
-            </Link>
-          </Grid>
-        ))}
+      <Grid container spacing={3}>
+        {this.state.search == false
+          ? libros.map(libro => (
+              <Grid item key={libro.id} lg={4} md={6} xs={12}>
+                <Link to='#'>
+                  <ProductCardLibro loader={this.loadingAction} libro={libro} />
+                </Link>
+              </Grid>
+            ))
+          : libros
+              .filter(
+                libro =>
+                  this.state.searchString.toLowerCase() ==
+                  libro.titulo_libro.toLowerCase()
+              )
+              .map(libro => (
+                <Grid item key={libro.id} lg={4} md={6} xs={12}>
+                  <Link to='#'>
+                    <ProductCardLibro
+                      loader={this.loadingAction}
+                      libro={libro}
+                    />
+                  </Link>
+                </Grid>
+              ))}
       </Grid>
     );
   }
@@ -163,12 +157,21 @@ class ProductList extends Component {
     const { classes } = this.props;
 
     return (
-      <DashboardLayout title="Libros">
+      <DashboardLayout title='Libros'>
         <div className={classes.root}>
           <ProductsToolbar search={this.searchFunc} />
-          <div className={classes.content}>{this.state.libros ? this.renderProducts() : <div className={classes.progressWrapper}> <CircularProgress /> </div>}</div>
+          <div className={classes.content}>
+            {this.state.libros ? (
+              this.renderProducts()
+            ) : (
+              <div className={classes.progressWrapper}>
+                {' '}
+                <CircularProgress />{' '}
+              </div>
+            )}
+          </div>
           <div className={classes.pagination}>
-            <Typography variant="caption">1-6 of 20</Typography>
+            <Typography variant='caption'>1-6 of 20</Typography>
             <IconButton>
               <ChevronLeftIcon />
             </IconButton>
