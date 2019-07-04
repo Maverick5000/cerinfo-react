@@ -26,43 +26,41 @@ import styles from './styles';
 import axios from 'axios';
 
 class Budget extends Component {
-
   state = {
     nMultas: 0
-  }
+  };
 
   componentDidMount() {
     const id = localStorage.getItem('id');
     //const id = '1'
 
-    axios.get(`https://cerinfo-api.herokuapp.com/user/multas`, { params: { usuario_id: id } })
-      .then(res => {
-        this.setState({ nMultas: res.data.length });
-      })
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = '';
+    if (tipo == 'Administrador') {
+      url = 'https://cerinfo-api.herokuapp.com/multas';
+    } else {
+      url = 'https://cerinfo-api.herokuapp.com/user/multas';
+    }
+    //const id = '1'
+
+    axios.get(url, { params: { usuario_id: id } }).then(res => {
+      this.setState({ nMultas: res.data.length });
+    });
   }
 
   render() {
     const { classes, className, ...rest } = this.props;
-
+    const tipo = localStorage.getItem('tipo_usuario');
     const rootClassName = classNames(classes.root, className);
 
     return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
+      <Paper {...rest} className={rootClassName}>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
-              MULTAS
+            <Typography className={classes.title} variant='body2'>
+              {tipo == 'Administrador' ? 'TOTAL MULTAS' : 'MULTAS'}
             </Typography>
-            <Typography
-              className={classes.value}
-              variant="h3"
-            >
+            <Typography className={classes.value} variant='h3'>
               {this.state.nMultas ? this.state.nMultas : 0}
             </Typography>
           </div>

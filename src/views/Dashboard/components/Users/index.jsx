@@ -26,42 +26,44 @@ import styles from './styles';
 import axios from 'axios';
 
 class Users extends Component {
-
   state = {
     nPrestamos: 0
-  }
+  };
 
   componentDidMount() {
     const id = localStorage.getItem('id');
     //const id = '1'
-    axios.get(`https://cerinfo-api.herokuapp.com/user/prestamos`, { params: { usuario_id: id } })
+
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = '';
+    if (tipo == 'Administrador') {
+      url = 'https://cerinfo-api.herokuapp.com/prestamos';
+    } else {
+      url = 'https://cerinfo-api.herokuapp.com/user/prestamos';
+    }
+
+    axios
+      .get(url, {
+        params: { usuario_id: id }
+      })
       .then(res => {
         this.setState({ nPrestamos: res.data.length });
-      })
+      });
   }
 
   render() {
     const { classes, className, ...rest } = this.props;
-
+    const tipo = localStorage.getItem('tipo_usuario');
     const rootClassName = classNames(classes.root, className);
 
     return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
+      <Paper {...rest} className={rootClassName}>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
-              PRESTAMOS
+            <Typography className={classes.title} variant='body2'>
+              {tipo == 'Administrador' ? 'TOTAL PRESTAMOS' : 'PRESTAMOS'}
             </Typography>
-            <Typography
-              className={classes.value}
-              variant="h3"
-            >
+            <Typography className={classes.value} variant='h3'>
               {this.state.nPrestamos ? this.state.nPrestamos : 0}
             </Typography>
           </div>

@@ -79,7 +79,7 @@ class ProductCardLibro extends Component {
     if (tipo == 'Administrador') {
       url = 'https://cerinfo-api.herokuapp.com/prestamos';
     } else {
-      url = `https://cerinfo-api.herokuapp.com/user/prestamos`;
+      url = `https://cerinfo-api.herokuapp.com/prestamos`;
     }
 
     axios.get(url, { params: { usuario_id: id } }).then(res => {

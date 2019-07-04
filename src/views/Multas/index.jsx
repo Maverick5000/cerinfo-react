@@ -115,6 +115,7 @@ class Multas extends Component {
 
   render() {
     const { classes } = this.props;
+    const tipo = localStorage.getItem('tipo_usuario');
 
     return (
       <DashboardLayout title='Multas'>
@@ -129,7 +130,7 @@ class Multas extends Component {
                   className={classes.item}
                 />
               ) : null}
-              {this.state.finalMonto != [] ? (
+              {this.state.finalMonto != [] && tipo == 'Administrador' ? (
                 <Paper style={{ marginTop: '5vh' }} className={classes.root}>
                   <Chart
                     options={this.state.options}

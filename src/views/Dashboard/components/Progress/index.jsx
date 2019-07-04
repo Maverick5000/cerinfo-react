@@ -23,47 +23,48 @@ import styles from './styles';
 import axios from 'axios';
 
 class Progress extends Component {
-
   state = {
     nMonto: 0
-  }
+  };
 
-  async componentDidMount() {
+  componentDidMount() {
     const id = localStorage.getItem('id');
     //const id = '1'
-    let total = 0
-    await axios.get(`https://cerinfo-api.herokuapp.com/user/multas`, { params: { usuario_id: id } })
-      .then(res => {
-        let array = res.data
-        array.forEach(element => {
-          total = total + element.monto_multa
-        });
+    let total = 0;
+    const tipo = localStorage.getItem('tipo_usuario');
+    let url = '';
+    if (tipo == 'Administrador') {
+      url = 'https://cerinfo-api.herokuapp.com/multas';
+    } else {
+      url = 'https://cerinfo-api.herokuapp.com/user/multas';
+    }
+    //const id = '1'
+    axios
+      .get(url, {
+        params: { usuario_id: id }
       })
-    this.setState({ nMonto: parseFloat(total).toFixed(2) });
+      .then(res => {
+        let array = res.data;
+        array.forEach(element => {
+          total = total + element.monto_multa;
+        });
+        this.setState({ nMonto: parseFloat(total).toFixed(2) });
+      });
   }
 
   render() {
     const { classes, className, ...rest } = this.props;
-
+    const tipo = localStorage.getItem('tipo_usuario');
     const rootClassName = classNames(classes.root, className);
 
     return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
+      <Paper {...rest} className={rootClassName}>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
-              TOTAL DEUDA
+            <Typography className={classes.title} variant='body2'>
+              {tipo == 'Administrador' ? 'TOTAL DEUDAS' : 'DEUDA'}
             </Typography>
-            <Typography
-              className={classes.value}
-              variant="h4"
-            >
+            <Typography className={classes.value} variant='h4'>
               {this.state.nMonto ? this.state.nMonto : 0}Bs
             </Typography>
           </div>
