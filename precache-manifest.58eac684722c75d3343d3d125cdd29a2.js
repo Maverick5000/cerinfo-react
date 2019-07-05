@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffc8869dedc91014d6103c7c71fe9ec8",
+    "revision": "c4fcaa02fcc11d73bf53bc4038578d52",
     "url": "/cerinfo-react/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cerinfo-react/static/css/2.fa4a79a6.chunk.css"
   },
   {
-    "revision": "a04852bbbe053a241a2b",
+    "revision": "811b9dd7fbf3ab897277",
     "url": "/cerinfo-react/static/css/main.0542c2e1.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cerinfo-react/static/js/2.26726f49.chunk.js"
   },
   {
-    "revision": "a04852bbbe053a241a2b",
-    "url": "/cerinfo-react/static/js/main.04c9c0a5.chunk.js"
+    "revision": "811b9dd7fbf3ab897277",
+    "url": "/cerinfo-react/static/js/main.d4ec1946.chunk.js"
   },
   {
     "revision": "a1499476f42ac3d4ac2a",

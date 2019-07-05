@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cerinfo-react/precache-manifest.7ecbfca9eefd6c190acb2e6d6c186c63.js"
+  "/cerinfo-react/precache-manifest.58eac684722c75d3343d3d125cdd29a2.js"
 );
 
 self.addEventListener('message', (event) => {
