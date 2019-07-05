@@ -134,10 +134,10 @@ class ProductList extends Component {
               </Grid>
             ))
           : libros
-              .filter(
-                libro =>
-                  this.state.searchString.toLowerCase() ==
-                  libro.titulo_libro.toLowerCase()
+              .filter(libro =>
+                libro.titulo_libro
+                  .toLowerCase()
+                  .includes(this.state.searchString.toLowerCase())
               )
               .map(libro => (
                 <Grid item key={libro.id} lg={4} md={6} xs={12}>
