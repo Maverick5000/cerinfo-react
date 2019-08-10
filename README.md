@@ -1,1 +1,1 @@
-CERINFO FRONTEND
+ReactJS frontend for a library software
